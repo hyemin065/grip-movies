@@ -1,19 +1,19 @@
 import cx from 'classnames'
-import styles from './GNB.module.scss'
+import styles from './tab.module.scss'
 import { NavLink } from 'react-router-dom'
 
-const GNB = () => {
+const Tab = () => {
   return (
-    <nav className={styles.gnb}>
+    <nav className={styles.tab}>
       <ul>
         <li>
           <NavLink to='todo' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
-            Todo
+            검색
           </NavLink>
         </li>
         <li>
           <NavLink to='weather' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
-            Weather
+            즐겨찾기
           </NavLink>
         </li>
       </ul>
@@ -21,4 +21,4 @@ const GNB = () => {
   )
 }
 
-export default GNB
+export default Tab
