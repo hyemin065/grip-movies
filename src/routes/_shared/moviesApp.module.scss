@@ -1,15 +1,15 @@
 @use '/src/styles/constants/colors';
+@use '/src/styles/mixins/flexbox';
 
 .appWrapper {
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flexbox.flexbox(center, center);
   width: 100%;
   height: 100vh;
 
   .app {
-    position: absolute;
+    @include flexbox.flexbox(between, center);
+    flex-direction: column;
     width: 360px;
     height: 720px;
     color: colors.$WHITE;

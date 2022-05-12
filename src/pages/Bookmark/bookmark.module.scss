@@ -1,0 +1,12 @@
+@use '/src/styles/constants/colors';
+@use '/src/styles/constants/levels';
+@use '/src/styles/mixins/flexbox';
+@use '/src/styles/mixins/position';
+
+.searchWrapper {
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  @include flexbox.flexbox(center, center);
+  color: colors.$WHITE;
+}

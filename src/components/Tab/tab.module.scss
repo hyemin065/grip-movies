@@ -3,8 +3,6 @@
 @use '/src/styles/mixins/flexbox';
 
 .tab {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   border-top: 1px solid colors.$GRAYD;
 

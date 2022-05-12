@@ -3,6 +3,26 @@
 @use '/src/styles/mixins/flexbox';
 @use '/src/styles/mixins/position';
 
-.searchWrapper {
-  background-color: beige;
+.searchResultWrapper {
+  width: 100%;
+  height: 100%;
+  padding: 0 20px 20px;
+  overflow: auto;
+  color: colors.$WHITE;
+
+  .noResultsWrap {
+    @include flexbox.flexbox(center, center);
+    height: 100%;
+
+    .noResults {
+      color: colors.$WHITE;
+    }
+  }
+}
+
+.buttonClick {
+  display: block;
+  width: 100%;
+  height: 50px;
+  background-color: #ffffff;
 }
