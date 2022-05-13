@@ -3,7 +3,7 @@
 @use '/src/styles/mixins/flexbox';
 
 header {
-  position: sticky;
+  position: absolute;
   top: 0;
   width: 100%;
 

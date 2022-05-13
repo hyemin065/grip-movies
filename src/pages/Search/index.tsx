@@ -1,14 +1,16 @@
+import Modal from 'components/Modal'
 import MoviesItem from 'components/MoviesItem'
 import { useEffect, useRef } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { getMoviesApi } from 'services/movies'
-import { movieDataState, movieInputState, moviePageState } from 'store/movies'
+import { movieDataState, movieInputState, moviePageState, moviesID } from 'store/movies'
 import styles from './search.module.scss'
 
 const Search = () => {
   const [movies, setMovies] = useRecoilState(movieDataState)
   const [pageNumber, setPageNumber] = useRecoilState(moviePageState)
   const inputValue = useRecoilValue(movieInputState)
+  const bookMarkID = useRecoilValue(moviesID)
   const pageRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -42,6 +44,8 @@ const Search = () => {
     }
   }, [movies, setPageNumber])
 
+  const clickMovie = movies.filter((movie) => movie.imdbID === bookMarkID)
+
   return (
     <main className={styles.searchResultWrapper}>
       {movies.length === 0 ? (
@@ -55,9 +59,14 @@ const Search = () => {
               <MoviesItem key={item.imdbID} {...item} />
             ))}
           </ul>
-          <div ref={pageRef}>Load More</div>
+          {movies.length % 10 === 0 && (
+            <div className={styles.more} ref={pageRef}>
+              Load More...
+            </div>
+          )}
         </>
       )}
+      <Modal movie={clickMovie[0]} />
     </main>
   )
 }

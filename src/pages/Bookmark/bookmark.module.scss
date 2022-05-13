@@ -3,9 +3,12 @@
 @use '/src/styles/mixins/flexbox';
 @use '/src/styles/mixins/position';
 
-.searchWrapper {
+.bookMarkWrapper {
+  padding: 0 20px 20px;
+  color: #ffffff;
   width: 100%;
   height: 100%;
+  margin-top: 100px;
   overflow: auto;
   @include flexbox.flexbox(center, center);
   color: colors.$WHITE;
