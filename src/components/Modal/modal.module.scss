@@ -7,30 +7,34 @@
   @include flexbox.flexbox(center, center);
   width: 100%;
   height: 100%;
-  background-color: rgba($color: colors.$BLACK, $alpha: 0.7);
+  background-color: rgba($color: colors.$BLACK, $alpha: 70%);
 
   .modalContents {
     width: 300px;
-    border-radius: 10px;
     background-color: colors.$WHITE;
+    border-radius: 10px;
+
     p {
-      text-align: center;
       padding: 30px;
+      text-align: center;
     }
+
     .buttonWrap {
       @include flexbox.flexbox(center, center);
-      padding: 0 0 30px 0;
+      padding: 0 0 30px;
+
       button {
         width: 120px;
         height: 50px;
-        color: colors.$WHITE;
-        font-size: 12px;
-        border-radius: 10px;
         margin: 0 10px;
+        font-size: 12px;
+        color: colors.$WHITE;
+        border-radius: 10px;
 
         &:first-of-type {
           background-color: colors.$INDIGO;
         }
+
         &:last-of-type {
           background-color: colors.$GRAY6;
         }

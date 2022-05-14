@@ -14,6 +14,7 @@ const Search = () => {
   const bookMarkID = useRecoilValue(moviesID)
   const pageRef = useRef<HTMLDivElement>(null)
   const [loadMore, setLoadMore] = useState(2)
+
   const clickMovie = movies.filter((movie) => movie.imdbID === bookMarkID)
 
   useEffect(() => {

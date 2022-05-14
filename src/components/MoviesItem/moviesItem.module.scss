@@ -32,7 +32,7 @@
 
       p {
         margin-bottom: 3px;
-        color: #ccc9c9;
+        color: rgb($color: #ccc9c9);
       }
 
       h2 {
@@ -44,11 +44,13 @@
           font-size: 12px;
         }
       }
+
       .bookMarkIcon {
-        fill: colors.$WHITE;
         width: 15px;
         height: 15px;
+        fill: colors.$WHITE;
       }
+
       .activeBookMarkIcon {
         width: 15px;
         height: 15px;

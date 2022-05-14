@@ -4,10 +4,9 @@
 @use '/src/styles/mixins/position';
 
 .bookMarkWrapper {
-  padding: 0 20px 20px;
-  color: #ffffff;
   width: 100%;
   height: 100%;
+  padding: 0 20px 20px;
   margin-top: 100px;
   overflow: auto;
   color: colors.$WHITE;

@@ -9,12 +9,12 @@
 
   .app {
     @include flexbox.flexbox(between, center);
+    position: relative;
     flex-direction: column;
     width: 360px;
     height: 660px;
     color: colors.$WHITE;
     background: rgb(17, 17, 17);
     border-radius: 50px;
-    position: relative;
   }
 }

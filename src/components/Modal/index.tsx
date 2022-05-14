@@ -17,6 +17,9 @@ const Modal = ({ movie }: IProps) => {
   const [bookMarkMoviesData, setBookMarkMoviesData] = useRecoilState(bookMarkDataState)
   const bookMarkIndex = bookMarkMoviesData.findIndex((item) => item.imdbID === bookMarkID)
 
+  const localStorageData = localStorage.getItem('movie')
+  const localStorageMovieData = localStorageData && JSON.parse(localStorageData)
+
   const closeModal = () => {
     setShowModal((prev) => !prev)
   }
@@ -50,6 +53,12 @@ const Modal = ({ movie }: IProps) => {
     localStorage.setItem('movie', JSON.stringify([...bookMarkMovie]))
     closeModal()
   }
+
+  useEffect(() => {
+    if (bookMarkMoviesData.length === 0 && localStorage.length > 0) {
+      setBookMarkMoviesData(localStorageMovieData)
+    }
+  }, [])
 
   return ReactDOM.createPortal(
     <div>
