@@ -6,6 +6,7 @@ import { getMoviesApi } from 'services/movies'
 import { movieDataState, movieInputState, moviePageState, moviesID } from 'store/movies'
 import styles from './search.module.scss'
 import _ from 'lodash'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 const Search = () => {
   const [movies, setMovies] = useRecoilState(movieDataState)
@@ -14,6 +15,8 @@ const Search = () => {
   const bookMarkID = useRecoilValue(moviesID)
   const pageRef = useRef<HTMLDivElement>(null)
   const [loadMore, setLoadMore] = useState(2)
+  const location = useLocation()
+  const navigate = useNavigate()
 
   const clickMovie = movies.filter((movie) => movie.imdbID === bookMarkID)
 
@@ -43,6 +46,12 @@ const Search = () => {
 
     return () => observer && observer.disconnect()
   }, [movies])
+
+  useEffect(() => {
+    if (location.pathname === '/') {
+      navigate('/search')
+    }
+  }, [])
 
   return (
     <main className={styles.searchResultWrapper}>
