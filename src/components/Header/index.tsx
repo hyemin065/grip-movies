@@ -1,4 +1,5 @@
 import { SearchIcon } from 'assets/svgs'
+import { useNavigate } from 'react-router-dom'
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil'
 import { getMoviesApi } from 'services/movies'
 import { movieDataState, movieInputState } from 'store/movies'
@@ -8,9 +9,16 @@ const Header = () => {
   const [searchValue, setSearchValue] = useRecoilState(movieInputState)
   const setMovies = useSetRecoilState(movieDataState)
   const resetState = useResetRecoilState(movieDataState)
+
+  const navigate = useNavigate()
+
   const handleClickSearch = async (e: any) => {
     e.preventDefault()
+
+    navigate('/search')
+
     const moviesData = await getMoviesApi({ title: searchValue, page: 1 })
+
     if (String(moviesData.Response) === 'False') {
       resetState()
       return
@@ -24,7 +32,7 @@ const Header = () => {
 
   return (
     <header>
-      <form action='' className={styles.form}>
+      <form className={styles.form}>
         <SearchIcon className={styles.searchIcon} />
         <input
           type='text'

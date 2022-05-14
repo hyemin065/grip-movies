@@ -13,6 +13,8 @@ const Search = () => {
   const bookMarkID = useRecoilValue(moviesID)
   const pageRef = useRef<HTMLDivElement>(null)
 
+  console.log('movie', movies)
+  console.log('page', pageNumber)
   useEffect(() => {
     const getMovies = async () => {
       if (pageNumber > 1) {
@@ -54,6 +56,7 @@ const Search = () => {
         </div>
       ) : (
         <>
+          <h2>검색결과</h2>
           <ul className={styles.movies}>
             {movies.map((item) => (
               <MoviesItem key={item.imdbID} {...item} />

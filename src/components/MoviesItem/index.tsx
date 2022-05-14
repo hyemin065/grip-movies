@@ -27,7 +27,11 @@ const MoviesItem = ({ Title, Year, Type, Poster, imdbID }: IMovie) => {
             {Title}
             <span>({Year})</span>
           </h2>
-          {bookMarkIndex !== -1 && <StarIcon className={styles.bookMarkIcon} />}
+          {bookMarkIndex !== -1 ? (
+            <StarIcon className={styles.activeBookMarkIcon} />
+          ) : (
+            <StarIcon className={styles.bookMarkIcon} />
+          )}
         </div>
       </button>
     </li>

@@ -45,9 +45,14 @@
         }
       }
       .bookMarkIcon {
+        fill: colors.$WHITE;
         width: 15px;
         height: 15px;
-        fill: colors.$WHITE;
+      }
+      .activeBookMarkIcon {
+        width: 15px;
+        height: 15px;
+        fill: colors.$YELLOW;
       }
     }
   }

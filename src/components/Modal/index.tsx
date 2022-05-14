@@ -14,7 +14,6 @@ const Modal = ({ movie }: IProps) => {
   const bookMarkID = useRecoilValue(moviesID)
   const movies = useRecoilValue(movieDataState)
   const modalRef = useRef<HTMLDivElement>(null)
-
   const [bookMarkMoviesData, setBookMarkMoviesData] = useRecoilState(bookMarkDataState)
   const bookMarkIndex = bookMarkMoviesData.findIndex((item) => item.imdbID === bookMarkID)
 
@@ -37,11 +36,20 @@ const Modal = ({ movie }: IProps) => {
     }
   }
 
-  const handleAddBookmark = (id: string) => {
+  const handleAddBookMark = (id: string) => {
     const bookMarkMovie = movies.filter((item) => item.imdbID === id)
     setBookMarkMoviesData([...bookMarkMoviesData, ...bookMarkMovie])
     localStorage.setItem('movie', JSON.stringify([...bookMarkMoviesData, ...bookMarkMovie]))
     closeModal()
+  }
+
+  const handleRemoveBookMark = (id: string) => {
+    const bookMarkMovie = bookMarkMoviesData.filter((item) => item.imdbID !== id)
+    setBookMarkMoviesData([...bookMarkMovie])
+    localStorage.removeItem('movie')
+    localStorage.setItem('movie', JSON.stringify([...bookMarkMovie]))
+    closeModal()
+    console.log('a', bookMarkMovie)
   }
 
   return showModal
@@ -50,9 +58,16 @@ const Modal = ({ movie }: IProps) => {
           <div className={styles.modalContents} ref={modalRef}>
             {movie.imdbID === bookMarkID && <p key={movie.imdbID}>{movie.Title}</p>}
             <div className={styles.buttonWrap}>
-              <button type='button' onClick={() => handleAddBookmark(bookMarkID)}>
-                {bookMarkIndex !== -1 ? '즐겨찾기 해제' : '즐겨찾기 추가'}
-              </button>
+              {bookMarkIndex !== -1 ? (
+                <button type='button' onClick={() => handleRemoveBookMark(bookMarkID)}>
+                  즐겨찾기 해제
+                </button>
+              ) : (
+                <button type='button' onClick={() => handleAddBookMark(bookMarkID)}>
+                  즐겨찾기 추가
+                </button>
+              )}
+
               <button type='button' onClick={closeModal}>
                 취소
               </button>
