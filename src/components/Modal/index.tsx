@@ -29,9 +29,9 @@ const Modal = ({ movie }: IProps) => {
     }
   })
 
-  const clickModalOutside = (e: any) => {
+  const clickModalOutside = (e: MouseEvent) => {
     if (!modalRef.current) return
-    if (showModal && !modalRef.current.contains(e.target)) {
+    if (showModal && !modalRef.current.contains(e.target as Node)) {
       closeModal()
     }
   }
@@ -49,11 +49,11 @@ const Modal = ({ movie }: IProps) => {
     localStorage.removeItem('movie')
     localStorage.setItem('movie', JSON.stringify([...bookMarkMovie]))
     closeModal()
-    console.log('a', bookMarkMovie)
   }
 
-  return showModal
-    ? ReactDOM.createPortal(
+  return ReactDOM.createPortal(
+    <div>
+      {showModal && (
         <div className={styles.modalContainer}>
           <div className={styles.modalContents} ref={modalRef}>
             {movie.imdbID === bookMarkID && <p key={movie.imdbID}>{movie.Title}</p>}
@@ -73,10 +73,11 @@ const Modal = ({ movie }: IProps) => {
               </button>
             </div>
           </div>
-        </div>,
-        document.querySelector('#modal') as HTMLElement
-      )
-    : null
+        </div>
+      )}
+    </div>,
+    document.querySelector('#modal') as HTMLElement
+  )
 }
 
 export default Modal

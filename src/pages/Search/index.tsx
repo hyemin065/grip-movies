@@ -1,10 +1,11 @@
 import Modal from 'components/Modal'
 import MoviesItem from 'components/MoviesItem'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { useRecoilState, useRecoilValue } from 'recoil'
 import { getMoviesApi } from 'services/movies'
 import { movieDataState, movieInputState, moviePageState, moviesID } from 'store/movies'
 import styles from './search.module.scss'
+import _ from 'lodash'
 
 const Search = () => {
   const [movies, setMovies] = useRecoilState(movieDataState)
@@ -12,22 +13,22 @@ const Search = () => {
   const inputValue = useRecoilValue(movieInputState)
   const bookMarkID = useRecoilValue(moviesID)
   const pageRef = useRef<HTMLDivElement>(null)
+  const [loadMore, setLoadMore] = useState(2)
+  const clickMovie = movies.filter((movie) => movie.imdbID === bookMarkID)
 
-  console.log('movie', movies)
-  console.log('page', pageNumber)
   useEffect(() => {
     const getMovies = async () => {
       if (pageNumber > 1) {
         const res = await getMoviesApi({ title: inputValue, page: pageNumber })
         const newMovies = res.Search
-
+        setLoadMore(Math.floor(res.totalResults / 10))
         if (String(res.Response) === 'True' && newMovies) {
-          setMovies((movie) => [...movie, ...newMovies])
+          setMovies((movie) => _.uniqWith([...movie, ...newMovies], _.isEqual))
         }
       }
     }
     getMovies()
-  }, [inputValue, pageNumber, setMovies])
+  }, [pageNumber])
 
   useEffect(() => {
     const observer = new IntersectionObserver((entries: IntersectionObserverEntry[]) => {
@@ -39,14 +40,8 @@ const Search = () => {
       observer.observe(pageRef.current)
     }
 
-    return () => {
-      if (pageRef.current) {
-        observer.unobserve(pageRef.current)
-      }
-    }
-  }, [movies, setPageNumber])
-
-  const clickMovie = movies.filter((movie) => movie.imdbID === bookMarkID)
+    return () => observer && observer.disconnect()
+  }, [movies])
 
   return (
     <main className={styles.searchResultWrapper}>
@@ -62,7 +57,7 @@ const Search = () => {
               <MoviesItem key={item.imdbID} {...item} />
             ))}
           </ul>
-          {movies.length % 10 === 0 && (
+          {loadMore >= pageNumber && (
             <div className={styles.more} ref={pageRef}>
               Load More...
             </div>

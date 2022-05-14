@@ -11,13 +11,13 @@ const Bookmark = () => {
   const localStorageMovieData = localStorageData && JSON.parse(localStorageData)
   const bookMarkID = useRecoilValue(moviesID)
 
+  const bookMarkMovies = bookMarkMoviesData.filter((item) => item.imdbID === bookMarkID)
+
   useEffect(() => {
     if (bookMarkMoviesData.length === 0 && localStorage.length > 0) {
       setBookMarkMoviesData(localStorageMovieData)
     }
   }, [])
-
-  const bookMarkMovies = bookMarkMoviesData.filter((item) => item.imdbID === bookMarkID)
 
   return (
     <main className={styles.bookMarkWrapper}>

@@ -1,21 +1,25 @@
 import { SearchIcon } from 'assets/svgs'
+import { ChangeEvent, FormEvent } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useRecoilState, useResetRecoilState, useSetRecoilState } from 'recoil'
 import { getMoviesApi } from 'services/movies'
-import { movieDataState, movieInputState } from 'store/movies'
+import { movieDataState, movieInputState, moviePageState } from 'store/movies'
 import styles from './header.module.scss'
 
 const Header = () => {
   const [searchValue, setSearchValue] = useRecoilState(movieInputState)
   const setMovies = useSetRecoilState(movieDataState)
   const resetState = useResetRecoilState(movieDataState)
+  const setPageNumber = useSetRecoilState(moviePageState)
 
   const navigate = useNavigate()
 
-  const handleClickSearch = async (e: any) => {
+  const handleClickSearch = async (e: FormEvent<HTMLButtonElement>) => {
     e.preventDefault()
 
     navigate('/search')
+
+    setPageNumber(1)
 
     const moviesData = await getMoviesApi({ title: searchValue, page: 1 })
 
@@ -26,7 +30,7 @@ const Header = () => {
     setMovies(moviesData.Search)
   }
 
-  const handleChangeInput = (e: any) => {
+  const handleChangeInput = (e: ChangeEvent<HTMLInputElement>) => {
     setSearchValue(e.currentTarget.value)
   }
 

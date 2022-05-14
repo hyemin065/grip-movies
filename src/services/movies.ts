@@ -18,6 +18,7 @@ export const getMoviesApi = async (params: Params) => {
       },
     })
     const { data } = response
+
     return data
   } catch (error) {
     throw new Error('실패')

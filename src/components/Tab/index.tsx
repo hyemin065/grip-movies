@@ -7,12 +7,12 @@ const Tab = () => {
     <nav className={styles.tab}>
       <ul>
         <li>
-          <NavLink to='search' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
+          <NavLink to='search' className={({ isActive }) => cx({ [styles.active]: isActive })}>
             검색
           </NavLink>
         </li>
         <li>
-          <NavLink to='bookmark' className={({ isActive }) => cx({ [styles.isActive]: isActive })}>
+          <NavLink to='bookmark' className={({ isActive }) => cx({ [styles.active]: isActive })}>
             즐겨찾기
           </NavLink>
         </li>
