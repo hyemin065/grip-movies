@@ -1,13 +1,23 @@
 import Modal from 'components/Modal'
 import MoviesItem from 'components/MoviesItem'
-import { useRecoilValue } from 'recoil'
+import { useEffect } from 'react'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { bookMarkDataState, moviesID } from 'store/movies'
 import styles from './bookmark.module.scss'
 
 const Bookmark = () => {
-  const bookMarkMoviesData = useRecoilValue(bookMarkDataState)
+  const [bookMarkMoviesData, setBookMarkMoviesData] = useRecoilState(bookMarkDataState)
   const bookMarkID = useRecoilValue(moviesID)
   const bookMarkMovies = bookMarkMoviesData.filter((item) => item.imdbID === bookMarkID)
+
+  const localStorageData = localStorage.getItem('movie')
+  const localStorageMovieData = localStorageData && JSON.parse(localStorageData)
+
+  useEffect(() => {
+    if (bookMarkMoviesData.length === 0 && localStorage.length > 0) {
+      setBookMarkMoviesData(localStorageMovieData)
+    }
+  }, [])
 
   return (
     <main className={styles.bookMarkWrapper}>

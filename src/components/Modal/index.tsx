@@ -58,6 +58,7 @@ const Modal = ({ movie }: IProps) => {
     if (bookMarkMoviesData.length === 0 && localStorage.length > 0) {
       setBookMarkMoviesData(localStorageMovieData)
     }
+    console.log(bookMarkMoviesData)
   }, [])
 
   return ReactDOM.createPortal(
