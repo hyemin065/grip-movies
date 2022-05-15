@@ -1,46 +1,38 @@
-# Getting Started with Create React App
+# 2022 Grip Company movie 개인과제
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+### 디렉토리 구조
 
-## Available Scripts
+```bash
+ src
+    ├─assets
+    │  └─svgs
+    ├─components
+    │  ├─Heaer
+    │  ├─Modal
+    │  ├─MoviesItem
+    │  └─Tab
+    ├─hooks
+    │  └─state
+    ├─pages
+    │  ├─Bookmark
+    │  └─Search
+    ├─routes
+    │  ├─MoviesApp
+    ├─services
+    ├─store
+    ├─styles
+    │  ├─base
+    │  ├─constants
+    │  └─mixins
+    ├─types
+    └─utils
+```
 
-In the project directory, you can run:
+## Description
+- 영화를 검색하고 즐겨찾기 등록을 할 수 있는 앱
+- 검색 탭에선 페이지를 내리면 무한스크롤을 통해 다음 페이지의 영화가 불러와진다
+- 즐겨찾기 탭에선 검색 페이지에서 나온 영화를 클릭하면 즐겨찾기 할 수 있는 modal이 뜨고
+즐겨찾기 추가 버튼을 누르면 즐겨찾기 탭에 추가된다 즐겨찾기 탭에서 조회할 수 있다
+![image](https://user-images.githubusercontent.com/42799968/168460105-f0a2276c-a944-4a55-9afc-28c869fc84b6.png)
+![image](https://user-images.githubusercontent.com/42799968/168460200-fb318bc4-4be6-41de-9ce8-a465fa81fc40.png)
 
-### `yarn start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
